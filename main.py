@@ -49,3 +49,17 @@ def add_recipe(recipe: CustomRecipe):
     new_recipe["id"] = len(RECIPES_DATABASE) + 1
     RECIPES_DATABASE.append(new_recipe)
     return {"mensaje": "Receta agregada exitosamente", "receta": new_recipe}
+
+# Add CORSMiddleware in main.py
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],
+)
